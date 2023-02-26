@@ -48,6 +48,22 @@ sudo apt install -y sublime-text brave-browser inetsim powershell
 git clone https://github.com/n1cfury.com/furiousrecon/furiousrecon.git /opt/furiousrecon
 git clone https://github.com/danielmiessler/SecLists.git /opt/SecLists
 
+#Install PIP and some PIP tools
+curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+python get-pip.py
+rm get-pip.py
+
+pip install scapy
+pip install requests
+pip install beautifulsoup4
+pip install pyinstaller
+pip install yara-python
+pip install volatility
+pip install pwntools
+pip install exiftool
+pip install frida
+pip install pycrypto
+
 # Download and Install Burp
 wget -O /tmp/burpsuite.sh https://portswigger.net/burp/releases/download?product=community&version=2021.11.4&type=Linux
 chmod +x /tmp/burpsuite.sh
