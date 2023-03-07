@@ -77,7 +77,3 @@ sleep 10
 echo "Applications installed. Don't forget to Grab Burp Suite and Volatility!"
 
 
-# Install Volatility using setup.py
-echo "Installing Volatility..."
-cd /opt/Volatility
-sudo python3 setup.py install
