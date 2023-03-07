@@ -4,6 +4,22 @@ echo "Startup Script"
 echo "So you're building a new box"
 echo "Did you break the old one so soon?"
 
+# Gets the current username and adds to sudoers group
+username=$(whoami)
+
+if grep -q "^$username" /etc/sudoers; then
+    echo "User $username is already in the sudoers group."
+    exit 1
+fi
+echo "$username ALL=(ALL:ALL) ALL" | sudo tee -a /etc/sudoers > /dev/null
+
+if sudo -l -U $username > /dev/null 2>&1; then
+    echo "User $username has been added to the sudoers group."
+else
+    echo "Error: Failed to add user $username to the sudoers group."
+fi
+
+#Creates /opt directory
 if [[ -d "/opt" ]]; then
     echo "/opt directory already exists"
     if [[ ":$PATH:" == *":/opt:"* ]]; then
@@ -20,7 +36,7 @@ else
     export PATH="$PATH:/opt"
 fi
 
-#Creating new aliases
+#Creating new aliases (might need to do this as root)
 echo "alias python=python3" >> /etc/bash.bashrc
 echo "frecon=/opt/furiousrecon/furiousrecon.sh" >> /etc/bash.bashrc
 
@@ -28,33 +44,35 @@ echo "frecon=/opt/furiousrecon/furiousrecon.sh" >> /etc/bash.bashrc
 sudo apt update
 
 # Install the easy stuff
-sudo apt install -y curl openssl libio-socket-ssl-perl wget nmap git wireshark golang ruby terminator gnupg apt-transport-https traceroute openvpn
+sudo apt install -y libssl-dev libffi-dev build-essential plocate curl openssl libio-socket-ssl-perl wget nmap git wireshark golang ruby terminator gnupg apt-transport-https traceroute openvpn python3-pip cherrytree openjdk-11-jdk
 
 # Clone Github repos
 git clone https://github.com/n1cfury/furiousrecon.git /opt/furiousrecon
 git clone https://github.com/danielmiessler/SecLists.git /opt/SecLists
+git clone https://github.com/fortra/impacket.git /opt/Impacket
+git clone https://github.com/volatilityfoundation/volatility.git /opt/Volatility
 
-#Install PIP and some PIP tools
-curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
-python get-pip.py
-rm get-pip.py
-
+#installing pip tools. Dont use PIP as root
 pip install scapy
 pip install requests
 pip install beautifulsoup4
 pip install pyinstaller
 pip install yara-python
-pip install volatility
 pip install pwntools
-pip install exiftool
 pip install frida
 pip install pycrypto
 
-# Download/Install FoxyProxy
-wget "https://addons.mozilla.org/firefox/downloads/file/2486729/foxyproxy_standard-7.5.1-an+fx.xpi"
-firefox --new-instance "file://$PWD/foxyproxy_standard-7.5.1-an+fx.xpi"
-sleep 5
-killall firefox
+#Acquiring additional tools
 
-# Run a PowerShell command
-pwsh -c "Write-Host 'PowerShell is working on Linux!'"
+echo "Installing Sublime Text..."
+wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | sudo apt-key add -
+echo "deb https://download.sublimetext.com/ apt/stable/" | sudo tee /etc/apt/sources.list.d/sublime-text.list
+sudo apt-get update
+sudo apt-get install sublime-text -y
+sleep 10
+
+echo "Installing Zoom..."
+wget https://zoom.us/client/latest/zoom_amd64.deb
+sudo dpkg -i zoom_amd64.deb
+
+echo "Applications installed. Don't forget to Grab Burp Suite and Volatility!"
