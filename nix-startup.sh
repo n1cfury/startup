@@ -31,6 +31,7 @@ if [[ -d "/opt" ]]; then
 else
     echo "/opt directory does not exist, creating directory"
     mkdir /opt
+    sudo chmod 777 /opt
     echo "/opt directory created"
     echo "adding /opt to PATH"
     export PATH="$PATH:/opt"
@@ -75,5 +76,3 @@ wget https://zoom.us/client/latest/zoom_amd64.deb
 sudo dpkg -i zoom_amd64.deb
 sleep 10
 echo "Applications installed. Don't forget to Grab Burp Suite and Volatility!"
-
-
