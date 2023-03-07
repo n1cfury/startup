@@ -41,7 +41,7 @@ echo "alias python=python3" >> /etc/bash.bashrc
 echo "frecon=/opt/furiousrecon/furiousrecon.sh" >> /etc/bash.bashrc
 
 # Update packages
-sudo apt update
+sudo apt update && sudo apt upgrade -y
 
 # Install the easy stuff
 sudo apt install -y libssl-dev libffi-dev build-essential plocate curl openssl libio-socket-ssl-perl wget nmap git wireshark golang ruby terminator gnupg apt-transport-https traceroute openvpn python3-pip cherrytree openjdk-11-jdk
@@ -63,7 +63,6 @@ pip install frida
 pip install pycrypto
 
 #Acquiring additional tools
-
 echo "Installing Sublime Text..."
 wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | sudo apt-key add -
 echo "deb https://download.sublimetext.com/ apt/stable/" | sudo tee /etc/apt/sources.list.d/sublime-text.list
@@ -74,5 +73,11 @@ sleep 10
 echo "Installing Zoom..."
 wget https://zoom.us/client/latest/zoom_amd64.deb
 sudo dpkg -i zoom_amd64.deb
-
+sleep 10
 echo "Applications installed. Don't forget to Grab Burp Suite and Volatility!"
+
+
+# Install Volatility using setup.py
+echo "Installing Volatility..."
+cd /opt/Volatility
+sudo python3 setup.py install
