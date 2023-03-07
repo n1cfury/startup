@@ -24,7 +24,7 @@ fi
 
 #Creating new aliases (might need to do this as root)
 echo "alias python=python3" >> /etc/bash.bashrc
-echo "frecon=/opt/furiousrecon/furiousrecon.sh" >> /etc/bash.bashrc
+echo "furiousrecon=/opt/furiousrecon/furiousrecon.sh" >> /etc/bash.bashrc
 
 # Update packages
 sudo apt update && sudo apt upgrade -y
