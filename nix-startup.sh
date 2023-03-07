@@ -4,21 +4,6 @@ echo "Startup Script"
 echo "So you're building a new box"
 echo "Did you break the old one so soon?"
 
-# Gets the current username and adds to sudoers group
-username=$(whoami)
-
-if grep -q "^$username" /etc/sudoers; then
-    echo "User $username is already in the sudoers group."
-    exit 1
-fi
-echo "$username ALL=(ALL:ALL) ALL" | sudo tee -a /etc/sudoers > /dev/null
-
-if sudo -l -U $username > /dev/null 2>&1; then
-    echo "User $username has been added to the sudoers group."
-else
-    echo "Error: Failed to add user $username to the sudoers group."
-fi
-
 #Creates /opt directory
 if [[ -d "/opt" ]]; then
     echo "/opt directory already exists"
