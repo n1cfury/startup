@@ -30,13 +30,17 @@ echo "furiousrecon=/opt/furiousrecon/furiousrecon.sh" >> /etc/bash.bashrc
 sudo apt update && sudo apt upgrade -y
 
 # Install the easy stuff
-sudo apt install -y libssl-dev libffi-dev build-essential plocate curl openssl libio-socket-ssl-perl wget nmap git wireshark golang ruby terminator gnupg apt-transport-https traceroute openvpn python3-pip cherrytree openjdk-11-jdk
+sudo apt install -y xsltproc libssl-dev libffi-dev build-essential plocate curl openssl libio-socket-ssl-perl wget nmap git wireshark golang ruby terminator gnupg apt-transport-https traceroute openvpn python3-pip cherrytree openjdk-11-jdk
 
 # Clone Github repos
 git clone https://github.com/n1cfury/furiousrecon.git /opt/furiousrecon
 git clone https://github.com/danielmiessler/SecLists.git /opt/SecLists
 git clone https://github.com/fortra/impacket.git /opt/Impacket
 git clone https://github.com/volatilityfoundation/volatility.git /opt/Volatility
+git clone https://github.com/lanmaster53/recon-ng.git /opt/recon-ng
+echo "Open a new window and manually finish the install for recon-ng"
+echo "First go here -> /opt/recon-ng"
+echo "then do this -> pip install -r REQUIREMENTS"
 
 #installing pip tools. Dont use PIP as root
 pip install scapy
