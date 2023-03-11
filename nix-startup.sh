@@ -11,7 +11,7 @@ if [[ -d "/opt" ]]; then
         echo "/opt already exists in PATH"
     else
         echo "/opt not in PATH, adding to PATH"
-        export PATH="$PATH:/opt"
+        export PATH=$PATH:/opt/*/bin"
     fi
 else
     echo "/opt directory does not exist, creating directory"
@@ -19,10 +19,10 @@ else
     sudo chmod 777 /opt
     echo "/opt directory created"
     echo "adding /opt to PATH"
-    export PATH="$PATH:/opt"
+    export PATH=$PATH:/opt/*/bin"
 fi
 
-#Creating new aliases (might need to do this as root)
+#Add your aliases
 echo "alias python=python3" >> /etc/bash.bashrc
 echo "furiousrecon=/opt/furiousrecon/furiousrecon.sh" >> /etc/bash.bashrc
 
@@ -30,7 +30,7 @@ echo "furiousrecon=/opt/furiousrecon/furiousrecon.sh" >> /etc/bash.bashrc
 sudo apt update && sudo apt upgrade -y
 
 # Install the easy stuff
-sudo apt install -y xsltproc libssl-dev libffi-dev build-essential plocate curl openssl libio-socket-ssl-perl wget nmap git wireshark golang ruby terminator gnupg apt-transport-https traceroute openvpn python3-pip cherrytree openjdk-11-jdk
+sudo apt install -y ufw wfuzz aircrack-ng nikto xsltproc libssl-dev libffi-dev build-essential plocate curl openssl libio-socket-ssl-perl wget nmap git wireshark golang ruby terminator gnupg apt-transport-https traceroute openvpn python3-pip cherrytree openjdk-11-jdk
 
 # Clone Github repos
 git clone https://github.com/n1cfury/furiousrecon.git /opt/furiousrecon
@@ -38,6 +38,7 @@ git clone https://github.com/danielmiessler/SecLists.git /opt/SecLists
 git clone https://github.com/fortra/impacket.git /opt/Impacket
 git clone https://github.com/volatilityfoundation/volatility.git /opt/Volatility
 git clone https://github.com/lanmaster53/recon-ng.git /opt/recon-ng
+git clone https://github.com/cervoise/linuxprivcheck.git /opt/linuxprivcheck
 echo "Open a new window and manually finish the install for recon-ng"
 echo "First go here -> /opt/recon-ng"
 echo "then do this -> pip install -r REQUIREMENTS"
@@ -51,6 +52,12 @@ pip install yara-python
 pip install pwntools
 pip install frida
 pip install pycrypto
+
+#Snap Installs
+sudo snap install powershell --classic
+sudo snap install enum4linux
+sudo snap install sqlmap
+sudo snap install testssl
 
 #Acquiring additional tools
 echo "Installing Sublime Text..."
