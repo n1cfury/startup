@@ -29,6 +29,19 @@ echo "alias furiousrecon=/opt/furiousrecon/furiousrecon.sh" >> ~/.bashrc
 # Update packages
 sudo apt update && sudo apt upgrade -y && sudo apt install -y git default-jre-headless curl wget golang ruby python3-pip snapd
 
+# Clone Github repos
+sudo git clone https://github.com/n1cfury/furiousrecon.git /opt/furiousrecon
+sudo git clone https://github.com/danielmiessler/SecLists.git /opt/SecLists
+sudo git clone https://github.com/SecureAuthCorp/impacket.git /opt/Impacket
+sudo git clone https://github.com/volatilityfoundation/volatility.git /opt/Volatility
+sudo git clone https://github.com/lanmaster53/recon-ng.git /opt/recon-ng
+sudo git clone https://github.com/cervoise/linuxprivcheck.git /opt/linuxprivcheck
+sudo git clone https://github.com/BloodHoundAD/BloodHound.git /opt/bloodhound
+sudo git clone https://github.com/offensive-security/exploitdb.git /opt/exploitdb
+sudo git clone https://github.com/n1cfury/startup.git startup
+sudo ln -sf /opt/exploitdb/searchsploit /usr/local/bin/searchsploit
+sudo searchsploit -u
+
 #Acquiring additional tools
 echo "Installing Sublime Text..."
 wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | sudo apt-key add -
@@ -49,19 +62,6 @@ sudo sh zap.sh
 
 # Print success message
 echo "OWASP ZAP installed successfully."
-
-# Clone Github repos
-sudo git clone https://github.com/n1cfury/furiousrecon.git /opt/furiousrecon
-sudo git clone https://github.com/danielmiessler/SecLists.git /opt/SecLists
-sudo git clone https://github.com/SecureAuthCorp/impacket.git /opt/Impacket
-sudo git clone https://github.com/volatilityfoundation/volatility.git /opt/Volatility
-sudo git clone https://github.com/lanmaster53/recon-ng.git /opt/recon-ng
-sudo git clone https://github.com/cervoise/linuxprivcheck.git /opt/linuxprivcheck
-sudo git clone https://github.com/BloodHoundAD/BloodHound.git /opt/bloodhound
-sudo git clone https://github.com/offensive-security/exploitdb.git /opt/exploitdb
-sudo git clone https://github.com/n1cfury/startup.git startup
-sudo ln -sf /opt/exploitdb/searchsploit /usr/local/bin/searchsploit
-sudo searchsploit -u
 
 #installing pip tools. Don't use PIP as root
 pip3 install --user scapy
@@ -84,5 +84,7 @@ sleep 5
 curl -sSL https://apt.metasploit.com/metasploit-framework.gpg.key | sudo apt-key add -
 # Add Metasploit repository to sources.list.d directory
 echo "deb https://apt.metasploit.com/ buster main" | sudo tee /etc/apt/sources.list.d/metasploit-framework.list
-
-sudo apt update && sudo apt install -y ufw wfuzz aircrack-ng dirb gobuster recon-ng nikto xsltproc libssl-dev libffi-dev build-essential plocate openssl libio-socket-ssl-perl nmap wireshark terminator gnupg apt-transport-https traceroute openvpn python3-pip cherrytree openjdk-11-jdk npm python3-shodan hashcat john metasploit-framework
+sleep 5
+sudo apt update && sudo apt install -y ufw nikto xsltproc libssl-dev libffi-dev build-essential plocate openssl libio-socket-ssl-perl nmap wireshark terminator gnupg apt-transport-https traceroute openvpn python3-pip cherrytree openjdk-11-jdk npm python3-shodan 
+sudo apt --fix-broken install
+sudo apt update && sudo apt install -y wfuzz aircrack-ng dirb gobuster recon-nghashcat john metasploit-framework
