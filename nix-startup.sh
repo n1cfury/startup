@@ -30,7 +30,7 @@ echo "alias furiousrecon=/opt/furiousrecon/furiousrecon.sh" >> ~/.bashrc
 sudo apt update && sudo apt upgrade -y
 
 # Install the easy stuff
-sudo apt install -y ufw wfuzz aircrack-ng nikto xsltproc libssl-dev libffi-dev build-essential plocate curl openssl libio-socket-ssl-perl wget nmap git wireshark golang ruby terminator gnupg apt-transport-https traceroute openvpn python3-pip cherrytree openjdk-11-jdk
+sudo apt install -y ufw wfuzz aircrack-ng dirb gobuster recon-ng nikto xsltproc libssl-dev libffi-dev build-essential plocate curl openssl libio-socket-ssl-perl wget nmap git wireshark golang ruby terminator gnupg apt-transport-https traceroute openvpn python3-pip cherrytree openjdk-11-jdk npm neo4j python3-shodan
 
 # Clone Github repos
 sudo git clone https://github.com/n1cfury/furiousrecon.git /opt/furiousrecon
@@ -39,7 +39,8 @@ sudo git clone https://github.com/SecureAuthCorp/impacket.git /opt/Impacket
 sudo git clone https://github.com/volatilityfoundation/volatility.git /opt/Volatility
 sudo git clone https://github.com/lanmaster53/recon-ng.git /opt/recon-ng
 sudo git clone https://github.com/cervoise/linuxprivcheck.git /opt/linuxprivcheck
-echo "Open a new window and manually finish the install for recon-ng"
+sudo git clone https://github.com/BloodHoundAD/BloodHound.git /opt/bloodhound
+echo "Open a new window and manually finish the install bloodhound"
 echo "First go here -> /opt/recon-ng"
 echo "then do this -> pip install -r REQUIREMENTS"
 
