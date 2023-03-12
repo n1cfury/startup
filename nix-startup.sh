@@ -78,13 +78,10 @@ sudo snap install powershell --classic
 sudo snap install enum4linux
 sudo snap install sqlmap
 sudo snap install testssl
+sudo snap install metasploit-framework
+sudo snap install cryptool
 sleep 5
 
-# Add Metasploit repository key
-curl -sSL https://apt.metasploit.com/metasploit-framework.gpg.key | sudo apt-key add -
-# Add Metasploit repository to sources.list.d directory
-echo "deb https://apt.metasploit.com/ buster main" | sudo tee /etc/apt/sources.list.d/metasploit-framework.list
-sleep 5
 sudo apt update && sudo apt install -y ufw nikto xsltproc libssl-dev libffi-dev build-essential plocate openssl libio-socket-ssl-perl nmap wireshark terminator gnupg apt-transport-https traceroute openvpn python3-pip cherrytree openjdk-11-jdk npm python3-shodan 
 sudo apt --fix-broken install
-sudo apt update && sudo apt install -y wfuzz aircrack-ng dirb gobuster recon-nghashcat john metasploit-framework
+sudo apt update && sudo apt install -y wfuzz aircrack-ng dirb gobuster recon-ng hashcat john
