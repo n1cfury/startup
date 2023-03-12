@@ -59,6 +59,7 @@ sudo git clone https://github.com/lanmaster53/recon-ng.git /opt/recon-ng
 sudo git clone https://github.com/cervoise/linuxprivcheck.git /opt/linuxprivcheck
 sudo git clone https://github.com/BloodHoundAD/BloodHound.git /opt/bloodhound
 sudo git clone https://github.com/offensive-security/exploitdb.git /opt/exploitdb
+sudo git clone https://github.com/n1cfury/startup.git startup
 sudo ln -sf /opt/exploitdb/searchsploit /usr/local/bin/searchsploit
 sudo searchsploit -u
 
