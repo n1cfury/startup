@@ -27,7 +27,7 @@ echo "alias python=python3" >> ~/.bashrc
 echo "alias furiousrecon=/opt/furiousrecon/furiousrecon.sh" >> ~/.bashrc
 
 # Update packages
-sudo apt update && sudo apt upgrade -y && sudo apt install -y git curl wget golang ruby python3-pip snapd
+sudo apt update && sudo apt upgrade -y && sudo apt install -y git default-jre-headless curl wget golang ruby python3-pip snapd
 
 #Acquiring additional tools
 echo "Installing Sublime Text..."
@@ -41,6 +41,14 @@ echo "Installing Zoom..."
 wget https://zoom.us/client/latest/zoom_amd64.deb
 sudo dpkg -i zoom_amd64.deb
 sleep 5
+
+# Download OWASP ZAP
+wget -q -O zap.sh https://github.com/zaproxy/zaproxy/releases/download/v2.11.0/ZAP_2_11_0_unix.sh
+# Install OWASP ZAP
+sudo sh zap.sh
+
+# Print success message
+echo "OWASP ZAP installed successfully."
 
 # Clone Github repos
 sudo git clone https://github.com/n1cfury/furiousrecon.git /opt/furiousrecon
@@ -70,4 +78,10 @@ sudo snap install enum4linux
 sudo snap install sqlmap
 sudo snap install testssl
 sleep 5
-sudo apt update && sudo apt install -y ufw wfuzz aircrack-ng dirb gobuster recon-ng nikto xsltproc libssl-dev libffi-dev build-essential plocate openssl libio-socket-ssl-perl nmap wireshark terminator gnupg apt-transport-https traceroute openvpn python3-pip cherrytree openjdk-11-jdk npm python3-shodan
+
+# Add Metasploit repository key
+curl -sSL https://apt.metasploit.com/metasploit-framework.gpg.key | sudo apt-key add -
+# Add Metasploit repository to sources.list.d directory
+echo "deb https://apt.metasploit.com/ buster main" | sudo tee /etc/apt/sources.list.d/metasploit-framework.list
+
+sudo apt update && sudo apt install -y ufw wfuzz aircrack-ng dirb gobuster recon-ng nikto xsltproc libssl-dev libffi-dev build-essential plocate openssl libio-socket-ssl-perl nmap wireshark terminator gnupg apt-transport-https traceroute openvpn python3-pip cherrytree openjdk-11-jdk npm python3-shodan hashcat john metasploit-framework
