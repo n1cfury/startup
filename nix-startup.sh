@@ -33,14 +33,10 @@ sudo apt update && sudo apt upgrade -y && sudo apt install -y git default-jre-he
 sudo git clone https://github.com/n1cfury/furiousrecon.git /opt/furiousrecon
 sudo git clone https://github.com/danielmiessler/SecLists.git /opt/SecLists
 sudo git clone https://github.com/SecureAuthCorp/impacket.git /opt/Impacket
-sudo git clone https://github.com/volatilityfoundation/volatility.git /opt/Volatility
-sudo git clone https://github.com/lanmaster53/recon-ng.git /opt/recon-ng
 sudo git clone https://github.com/cervoise/linuxprivcheck.git /opt/linuxprivcheck
 sudo git clone https://github.com/BloodHoundAD/BloodHound.git /opt/bloodhound
 sudo git clone https://github.com/offensive-security/exploitdb.git /opt/exploitdb
 sudo git clone https://github.com/n1cfury/startup.git startup
-sudo ln -sf /opt/exploitdb/searchsploit /usr/local/bin/searchsploit
-sudo searchsploit -u
 
 #Acquiring additional tools
 echo "Installing Sublime Text..."
@@ -79,7 +75,9 @@ sudo snap install enum4linux
 sudo snap install sqlmap
 sudo snap install testssl
 sudo snap install metasploit-framework
+sudo snap install searchsploit
 sudo snap install cryptool
+sudo snap install volatility-phocean
 sleep 5
 
 sudo apt update && sudo apt install -y ufw nikto xsltproc libssl-dev libffi-dev build-essential plocate openssl libio-socket-ssl-perl nmap wireshark terminator gnupg apt-transport-https traceroute openvpn python3-pip cherrytree openjdk-11-jdk npm python3-shodan 
