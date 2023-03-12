@@ -1,9 +1,14 @@
-# startup
-Startup scripts for new builds
+# Startup Scripts
+Quick recovery for any working boxes you're using.
 
 ## Why?
-In the event I need to spin up a new linux box, that I want to run with bare minimum tools this script will download and install additional tools.
+Get your most commonly used tools installed on a bare bones box using one script.
 
-### Linux Startup script
+## Operating systems tested
+- Ubuntu 22.04.2 LTS (jammy)
 
-### Windows Startup Script
+### ToDo
+- Test MetaSploit install
+- Get BurpSuite installed and running
+- Start building powershell script
+- Build Scripts for different hosts
